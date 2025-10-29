@@ -15,14 +15,10 @@
   <img src="https://img.shields.io/badge/status-Lab%20Ready-orange?style=flat-square">
 </p>
 
----
-
 <figure align="center">
   <img src="https://img.icons8.com/?size=512&id=44660&format=png" width="120" alt="Security Icon">
   <figcaption><i>Isolated VM-based lab for safe UAF experiments</i></figcaption>
 </figure>
-
----
 
 <h2>🧩 Overview</h2>
 
@@ -36,8 +32,6 @@ to detect and analyze memory safety issues safely.
 > ⚠️ <b>Disclaimer:</b> This project is for educational and authorized research only.  
 > Do not execute tests on third-party systems. Use inside isolated environments.
 
----
-
 <h2>📁 Project Structure</h2>
 
 ambient-uaf/
@@ -47,10 +41,6 @@ ambient-uaf/
 ├── tools/ # ASan, Valgrind, and logging utilities
 └── README.md # Documentation
 
-yaml
-Copiar código
-
----
 
 <h2>🧠 Key Features</h2>
 
@@ -59,8 +49,6 @@ Copiar código
 - 💾 Safe workflow with snapshots, no shared folders, and log collection  
 - 🧰 Debugging examples with GDB and `rr` (record-replay)  
 - 📋 Legal and ethical research guidelines  
-
----
 
 <h2>⚙️ Requirements</h2>
 
@@ -71,11 +59,9 @@ Copiar código
   <li>Snapshots enabled and isolated network (Host-only / Air-gap)</li>
 </ul>
 
----
-
 <h2>🚀 Quickstart (Summary)</h2>
 
-```bash
+```
 # Inside your Linux VM
 sudo apt update
 sudo apt install build-essential valgrind gdb rr
@@ -85,21 +71,24 @@ gcc -fsanitize=address -g -O1 examples/uaf_example.c -o uaf_example_asan
 
 # Run with ASan
 ASAN_OPTIONS=detect_leaks=1 ./uaf_example_asan
+```
+
 Run with Valgrind:
 
-bash
-Copiar código
+```
 valgrind --leak-check=full --track-origins=yes ./uaf_example_asan
-Debug with GDB:
 
-bash
-Copiar código
+```
+
+Debug with GDB:
+```
 gdb ./uaf_example_asan
 run
 bt
+```
+
 <h2>🧪 Example (uaf_example.c)</h2>
-c
-Copiar código
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -118,23 +107,26 @@ int main() {
 🌐 Set network mode to <b>Host-only</b> or <b>No Network</b>.
 🔁 Test binaries inside the VM only.
 💾 Export logs and restore snapshot before new tests.
-
-<h2>📘 Educational Purpose</h2> <p> This repository aims to support students and researchers studying memory corruption, offering a reproducible and safe environment for experiments. </p>
+<h2>📘 Educational Purpose</h2>
+<p>
+This repository aims to support students and researchers studying memory corruption,
+offering a reproducible and safe environment for experiments.
+</p>
 🧩 UAF (Use-After-Free) occurs when memory is accessed after being freed —
 this lab helps visualize and detect such issues without risk to real systems.
-
-<h2>🤝 Contributing</h2> <p> Contributions are welcome — please ensure that any additions follow the same safety and ethical principles. Do not include or share real-world exploits. </p>
-<h2>📜 License</h2> <p align="center"> <b>MIT License</b> — for educational and research use.<br> Created and maintained for safe vulnerability analysis learning. </p>
-<figure align="center"> <img src="https://img.icons8.com/?size=512&id=111700&format=png" width="100" alt="Lab Icon"> <figcaption><i>Build safely. Test ethically.</i></figcaption> </figure> ```
-
-
-
-
-
-
-
-
-
-
-
-O ChatGPT pode cometer erros. Por isso, le
+<h2>🤝 Contributing</h2>
+<p>
+Contributions are welcome — please ensure that any additions follow the same safety and ethical principles.
+Do not include or share real-world exploits.
+</p>
+<h2>📜 License</h2>
+<p align="center">
+  <b>MIT License</b> — for educational and research use.<br>
+  Created and maintained for safe vulnerability analysis learning.
+</p>
+<figure align="center">
+  <img src="https://img.icons8.com/?size=512&id=111700&format=png" width="100" alt="Lab Icon">
+  <figcaption><i>Build safely. Test ethically.</i></figcaption>
+</figure>
+```
+::contentReference[oaicite:0]{index=0}
