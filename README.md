@@ -63,21 +63,21 @@ ambient-uaf/
 
 ```
 # Inside your Linux VM
+```
 sudo apt update
 sudo apt install build-essential valgrind gdb rr
-
+```
 # Compile example with AddressSanitizer
+```
 gcc -fsanitize=address -g -O1 examples/uaf_example.c -o uaf_example_asan
-
+```
 # Run with ASan
+```
 ASAN_OPTIONS=detect_leaks=1 ./uaf_example_asan
 ```
-
 Run with Valgrind:
-
 ```
 valgrind --leak-check=full --track-origins=yes ./uaf_example_asan
-
 ```
 
 Debug with GDB:
@@ -110,7 +110,7 @@ int main() {
 
     return 0;
 }
-
+````
 
 <h2>🔒 Safe Workflow</h2>
 🧰 Create a clean VM (snapshot immediately).
