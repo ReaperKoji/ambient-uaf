@@ -8,6 +8,13 @@
   <i>Designed for controlled, educational, and authorized testing only.</i>
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
+  <img src="https://img.shields.io/badge/platform-Linux-lightgrey?style=flat-square">
+  <img src="https://img.shields.io/badge/language-C/C++-blue?style=flat-square">
+  <img src="https://img.shields.io/badge/status-Lab%20Ready-orange?style=flat-square">
+</p>
+
 ---
 
 <figure align="center">
@@ -36,9 +43,12 @@ to detect and analyze memory safety issues safely.
 ambient-uaf/
 ├── vm-setup/ # VM setup guides (VirtualBox / QEMU)
 ├── examples/ # Minimal C/C++ UAF demonstration programs
+│ └── uaf_example.c
 ├── tools/ # ASan, Valgrind, and logging utilities
 └── README.md # Documentation
 
+yaml
+Copiar código
 
 ---
 
@@ -65,46 +75,51 @@ ambient-uaf/
 
 <h2>🚀 Quickstart (Summary)</h2>
 
-```
+```bash
 # Inside your Linux VM
 sudo apt update
 sudo apt install build-essential valgrind gdb rr
 
 # Compile example with AddressSanitizer
-gcc -fsanitize=address -g -O1 example.c -o example_asan
+gcc -fsanitize=address -g -O1 examples/uaf_example.c -o uaf_example_asan
 
-# Run
-ASAN_OPTIONS=detect_leaks=1 ./example_asan
-````
-
+# Run with ASan
+ASAN_OPTIONS=detect_leaks=1 ./uaf_example_asan
 Run with Valgrind:
 
-```
-valgrind --leak-check=full --track-origins=yes ./example_binary
-
-```
+bash
+Copiar código
+valgrind --leak-check=full --track-origins=yes ./uaf_example_asan
 Debug with GDB:
-```
-gdb ./example_asan
+
+bash
+Copiar código
+gdb ./uaf_example_asan
 run
 bt
-```
+<h2>🧪 Example (uaf_example.c)</h2>
+c
+Copiar código
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *ptr = malloc(sizeof(int));
+    *ptr = 42;
+    free(ptr);           // Memory is freed
+    printf("%d\n", *ptr); // Use-After-Free (UAF)
+    return 0;
+}
+💡 Run this inside your VM with ASan or Valgrind to safely observe UAF detection behavior.
 
 <h2>🔒 Safe Workflow</h2>
-
 🧰 Create a clean VM (snapshot immediately).
-
 ❌ Disable clipboard and shared folders.
-
 🌐 Set network mode to <b>Host-only</b> or <b>No Network</b>.
-
 🔁 Test binaries inside the VM only.
-
 💾 Export logs and restore snapshot before new tests.
 
-
 <h2>📘 Educational Purpose</h2> <p> This repository aims to support students and researchers studying memory corruption, offering a reproducible and safe environment for experiments. </p>
-
 🧩 UAF (Use-After-Free) occurs when memory is accessed after being freed —
 this lab helps visualize and detect such issues without risk to real systems.
 
@@ -112,3 +127,14 @@ this lab helps visualize and detect such issues without risk to real systems.
 <h2>📜 License</h2> <p align="center"> <b>MIT License</b> — for educational and research use.<br> Created and maintained for safe vulnerability analysis learning. </p>
 <figure align="center"> <img src="https://img.icons8.com/?size=512&id=111700&format=png" width="100" alt="Lab Icon"> <figcaption><i>Build safely. Test ethically.</i></figcaption> </figure> ```
 
+
+
+
+
+
+
+
+
+
+
+O ChatGPT pode cometer erros. Por isso, le
