@@ -1,0 +1,11 @@
+# Análise de segurança
+pyasn==1.6.1
+psutil==5.9.0
+# Debug
+python-ptrace==0.9.8
+# Rede (apenas para testes isolados)
+scapy==2.4.5
+# Monitoramento
+gpustat==1.0.0
+# Utilitários
+colorama==0.4.6
