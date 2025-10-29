@@ -89,17 +89,28 @@ bt
 
 <h2>🧪 Example (uaf_example.c)</h2>
 
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+ * Simple Use-After-Free demonstration.
+ * The pointer is accessed after being freed,
+ * which triggers a memory safety violation.
+ */
+
 int main() {
-    int *ptr = malloc(sizeof(int));
-    *ptr = 42;
-    free(ptr);           // Memory is freed
-    printf("%d\n", *ptr); // Use-After-Free (UAF)
+    int *ptr = malloc(sizeof(int)); // Allocate memory
+    *ptr = 42;                      // Write to allocated memory
+
+    free(ptr);                      // Memory is released
+
+    // ❌ Dangerous: Access after free (UAF)
+    printf("Value after free: %d\n", *ptr);
+
     return 0;
 }
-💡 Run this inside your VM with ASan or Valgrind to safely observe UAF detection behavior.
+
 
 <h2>🔒 Safe Workflow</h2>
 🧰 Create a clean VM (snapshot immediately).
